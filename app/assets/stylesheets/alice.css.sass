@@ -1,0 +1,81 @@
+@import "compass/typography/links"
+
+$link-color: red
+
+// new - новый комментарий к ресурсу
+// reply - ответный комментарий
+
+// Заголовок создания нового комментария
+h3.alice-new-header
+
+// Форма создания нового комментария
+form.alice-new
+  textarea
+    width: auto
+
+// Форма ответа на коммент
+form.alice-reply_form
+  display: none
+  textarea
+    width: auto
+
+
+// Блок с кнопкой
+.alice-new-actions
+
+// Кнопка отправки сообщения
+button.alice-new-send
+
+
+// Ссылка на комментарии объекта комментирования
+a.alice-link-to-comments
+  font-size: 81%
+  +link-colors(#ccc)
+
+
+ul.alice-replies
+  margin-left: 10px
+  &:first
+    margin-left: 0
+
+ul.alice
+  padding-left: 0px
+  padding-top: 0px
+  padding-bottom: 0px
+  h2.alice-header
+    color: #afa56a
+    font-size: 120%
+    #alice-comments-counter
+      color: #afa56a
+  li.alice-comment
+    margin-left: 15px
+    margin-top: 5px
+    list-style-type: none
+    .alice-comment-details
+      font-size: 12px
+      font-family: Serif
+      color: #999
+      .alice-comment-actions
+        margin-left: 5px
+      .alice-comment-timelink
+        margin-left: 5px
+        +unstyled-link
+        border-bottom: 1px dashed #999
+        &:hover
+          color: black
+          border-bottom-color: black
+      .alice-comment-content
+        margin: 2px 0
+
+// Псевдо-ссылка 'ответить', открывает форму с ответом
+.alice-comment-reply
+
+a.alice-comment-reply_link
+  font-size: 11px
+  text-decoration: none
+  border-bottom: 1px dashed $link_color
+  &:hover
+    border-color: red
+
+div.alice-comment-edit
+  display: none
