@@ -146,15 +146,14 @@ class Alice::CommentDecorator < Alice::BaseDecorator
                  :id => "alice-remove-link-#{ident}",
                  :method => :delete,
                  :data => { :ident => ident },
-                 :class=>'comment-remove-link tooltip',
+                 :class=>'comment-remove-link twipsy',
                  :title=>'Удалить' if can_destroy?
-
 
     super_destroy_link = h.link_to 'УД!', 
       h.url_for( :subdomain => 'admin', :only_path=> false, 
                 :controller => 'admin/admin_comments', :action => :destroy, :id => comment.id ),
       :title => 'Удалить окончательно',
-      :class => 'comment-remove-link tooltip',
+      :class => 'comment-remove-link twipsy',
       :method => :delete,
       :confirm => 'Удалить окончательно, а вместе с ним и всю ветку ?' if h.can? :manage, :all
 
@@ -166,7 +165,7 @@ class Alice::CommentDecorator < Alice::BaseDecorator
     hide_link = h.link_to(is_hidden? ? "раскр." : "скр.",
                           toggle_comment_url,
                           :method => :put,
-                          :class => 'comment-toggle-link tooltip',
+                          :class => 'comment-toggle-link twipsy',
                           :remote => true, 
                           :title => is_hidden? ? 'Раскрыть' : 'Скрыть') if can_hide?
 

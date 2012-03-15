@@ -79,7 +79,8 @@ $(function() {
 
     $('form.alice-edit-form').live('ajax:success', function(evt, data, status, xhr){
       $this = $(this);
-      $this.twipsy('hide'); // TODO Проверять на наличие twipsy
+      //С bootstrap2 вроде не надо
+      //$this.twipsy('hide'); // TODO Проверять на наличие twipsy
 
       var commentContainer = $($this.parents(".alice-comment-div")[0]);
       commentContainer.html(data);
@@ -87,7 +88,8 @@ $(function() {
 
     $('a.comment-remove-link').live('ajax:success', function(evt, data, status, xhr){
       $this = $(this);
-      $this.twipsy('hide'); // TODO Проверять на наличие twipsy
+      //С bootstrap2 вроде не надо
+      // $this.twipsy('hide'); // TODO Проверять на наличие twipsy
 
       var commentContainer = $($this.parents(".alice-comment-div")[0]);
       commentContainer.html(data);
