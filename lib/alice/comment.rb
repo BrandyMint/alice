@@ -43,7 +43,9 @@ module Alice
       end
 
       def decrement_commentable
-        commentable.decrement_total_counter unless commentable==resource
+        # Незнаю почему, но бывает что удаляются комменты без commentable
+        # https://dapi.airbrake.io/errors/39124261
+        commentable.try :decrement_total_counter unless commentable==resource
       end
     end
   end
