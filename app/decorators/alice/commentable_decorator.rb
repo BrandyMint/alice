@@ -34,7 +34,7 @@ class Alice::CommentableDecorator < Alice::BaseDecorator
   end
 
   def show_header
-    h.content_tag :h2, comments_title.html_safe, :class=>'alice-header'
+    h.content_tag :h3, comments_title.html_safe, :class=>'alice-header'
   end
 
   def show_replies
