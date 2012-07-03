@@ -119,12 +119,8 @@ class Alice::CommentDecorator < Alice::BaseDecorator
       h.content_tag :span, :class => 'alice-comment-removed' do
         'Комментарий удален'
       end
-    elsif confirmed?
-      comment.content_html
     else
-      h.content_tag :span, :class => 'alice-comment-removed' do
-        'Автор комментария не подтвердил свой емайл'
-      end
+      comment.content_html
     end
   end
 
