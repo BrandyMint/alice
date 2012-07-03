@@ -5,7 +5,6 @@ module Alice
       # extend ClassMethods
       include InstanceMethods
       be_commentable table_name
-
       attr_accessible :content, :commentable_id, :commentable_type, :author, :resource_id, :resource_type, :author_email, :author_name, :author_ip
 
       belongs_to :commentable, :polymorphic => true, :counter_cache=>"#{table_name}_count"
@@ -24,8 +23,6 @@ module Alice
       after_destroy :decrement_commentable
 
       validates_presence_of :commentable, :content, :resource
-      validates_presence_of :author_email, :unless => Proc.new { |c| c.author.present? }
-      validates_presence_of :author, :if => Proc.new { |c| c.author_name.blank? and c.author_email.blank? }
     end
 
     module InstanceMethods
