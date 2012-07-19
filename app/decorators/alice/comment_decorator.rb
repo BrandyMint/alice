@@ -85,7 +85,7 @@ class Alice::CommentDecorator < Alice::BaseDecorator
 
   def can_edit?
     return nil unless show_forms?
-    active? and current_user == to_model.author and time_to_edit>10
+    active? and current_user and current_user == to_model.author and time_to_edit>10
   end
 
   def can_hide?
