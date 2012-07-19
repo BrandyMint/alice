@@ -9,20 +9,29 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Danil Pismenny"]
-  s.date = "2012-03-03"
-  s.description = "TODO: longer description of your gem"
+  s.date = "2012-07-19"
+  s.description = "Alice is advanced comment system for Ruby On Rails"
   s.email = "danil@orionet.ru"
-  s.files = [
-    ".document",
-    ".gitignore",
-    "Gemfile",
+  s.extra_rdoc_files = [
     "LICENSE.txt",
+    "README",
+    "README.rdoc"
+  ]
+  s.files = [
+    "Gemfile",
+    "Gemfile.lock",
+    "LICENSE.txt",
+    "README",
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "alice.gemspec",
     "app/assets/javascripts/alice.js",
     "app/assets/stylesheets/alice.css.sass",
     "app/controllers/alice/base_controller.rb",
+    "app/decorators/alice/base_decorator.rb",
+    "app/decorators/alice/comment_decorator.rb",
+    "app/decorators/alice/commentable_decorator.rb",
     "lib/alice.rb",
     "lib/alice/action_view_extension.rb",
     "lib/alice/application_helper.rb",
@@ -34,29 +43,32 @@ Gem::Specification.new do |s|
     "test/test_alice.rb",
     "vendor/assets/javascripts/jquery.form.js"
   ]
-  s.homepage = "http://github.com/dapi/alice"
+  s.homepage = "https://github.com/BrandyMint/alice.git"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
-  s.summary = "TODO: one-line summary of your gem"
+  s.rubygems_version = "1.8.24"
+  s.summary = "Alice is advanced comment system for Ruby On Rails"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<draper>, [">= 0"])
       s.add_development_dependency(%q<minitest>, [">= 0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<bundler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
+      s.add_dependency(%q<draper>, [">= 0"])
       s.add_dependency(%q<minitest>, [">= 0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_dependency(%q<bundler>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
+    s.add_dependency(%q<draper>, [">= 0"])
     s.add_dependency(%q<minitest>, [">= 0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+    s.add_dependency(%q<bundler>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
     s.add_dependency(%q<rcov>, [">= 0"])
   end

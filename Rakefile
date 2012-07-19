@@ -15,10 +15,10 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "alice"
-  gem.homepage = "http://github.com/dapi/alice"
+  gem.homepage = "https://github.com/BrandyMint/alice.git"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "Alice is advanced comment system for Ruby On Rails"
+  gem.description = "Alice is advanced comment system for Ruby On Rails"
   gem.email = "danil@orionet.ru"
   gem.authors = ["Danil Pismenny"]
   # dependencies defined in Gemfile
@@ -42,7 +42,7 @@ end
 
 task :default => :test
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
