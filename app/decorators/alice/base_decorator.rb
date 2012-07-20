@@ -121,10 +121,14 @@ class Alice::BaseDecorator < ApplicationDecorator
     "alice-level-#{level} #{replies_class} alice"
   end
 
-  def show_replies
+  def show_replies level=0
     return unless show_replies?
-    h.content_tag :ul, :class => replies_classes, :id => replies_id  do
-      replies if replies_count>0
+    if level <= 5
+      h.content_tag :ul, :class => replies_classes, :id => replies_id  do
+        replies(level) if replies_count>0
+      end
+    else
+      replies(level) if replies_count>0
     end
   end
 
@@ -132,10 +136,10 @@ class Alice::BaseDecorator < ApplicationDecorator
     comments_count
   end
 
-  def replies level=0
+  def replies level
     result = ''
     scope.each do |comment|
-      result << comment_decorated(comment).show_comment #(level)
+      result << comment_decorated(comment).show_comment(level)
     end
     result.html_safe
   end

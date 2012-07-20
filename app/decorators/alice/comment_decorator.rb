@@ -49,8 +49,9 @@ class Alice::CommentDecorator < Alice::BaseDecorator
   def comment_body
     h.render 'comments/comment_body', :decorator => self
   end
-  def show_comment
-    h.render 'comments/comment', :decorator => self
+
+  def show_comment level=0
+    h.render 'comments/comment', :decorator => self, :level => level
   end
 
   def show_hidden_edit_form
