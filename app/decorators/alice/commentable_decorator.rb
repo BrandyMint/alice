@@ -37,10 +37,10 @@ class Alice::CommentableDecorator < Alice::BaseDecorator
     h.content_tag :h3, comments_title.html_safe, :class=>'alice-header'
   end
 
-  def show_replies level=0
+  def show_replies
     return '' unless to_model
     h.content_tag :div, :id=>'comments' do
-      show_header + show_new_above + super(level) + show_new_below
+      show_header + show_new_above + super + show_new_below
     end
   end
 

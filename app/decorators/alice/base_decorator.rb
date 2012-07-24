@@ -71,7 +71,7 @@ class Alice::BaseDecorator < ApplicationDecorator
     size = :medium if size == true
     if to_model.respond_to?(:company) and to_model.company
       if size
-        h.show_avatar(to_model.author, :size=>size, :class=>'element-user-avatar') + 
+        h.show_avatar(to_model.author, :size=>size, :class=>'element-user-avatar') +
           "&nbsp;Официальный комментарий #{h.show_company(company)}".html_safe
       else
         "Официальный комментарий #{h.show_company(company)}".html_safe
@@ -121,14 +121,10 @@ class Alice::BaseDecorator < ApplicationDecorator
     "alice-level-#{level} #{replies_class} alice"
   end
 
-  def show_replies level=0
+  def show_replies
     return unless show_replies?
-    if level <= 5
-      h.content_tag :ul, :class => replies_classes, :id => replies_id  do
-        replies(level) if replies_count>0
-      end
-    else
-      replies(level) if replies_count>0
+    h.content_tag :ul, :class => replies_classes, :id => replies_id  do
+      replies if replies_count>0
     end
   end
 
@@ -136,10 +132,10 @@ class Alice::BaseDecorator < ApplicationDecorator
     comments_count
   end
 
-  def replies level
+  def replies level=0
     result = ''
     scope.each do |comment|
-      result << comment_decorated(comment).show_comment(level)
+      result << comment_decorated(comment).show_comment
     end
     result.html_safe
   end
@@ -190,7 +186,7 @@ class Alice::BaseDecorator < ApplicationDecorator
   def show_new
     return unless show_forms?
     if new_comment_title
-      h.content_tag( :h3, new_comment_title, :class=>'alice-new-header') + 
+      h.content_tag( :h3, new_comment_title, :class=>'alice-new-header') +
         show_form('alice-new-form-block')
     else
       show_form('alice-new-form-block')

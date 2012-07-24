@@ -50,8 +50,8 @@ class Alice::CommentDecorator < Alice::BaseDecorator
     h.render 'comments/comment_body', :decorator => self
   end
 
-  def show_comment level=0
-    h.render 'comments/comment', :decorator => self, :level => level
+  def show_comment
+    h.render 'comments/comment', :decorator => self
   end
 
   def show_hidden_edit_form
@@ -146,15 +146,15 @@ class Alice::CommentDecorator < Alice::BaseDecorator
                  :class=>'comment-remove-link twipsy',
                  :title=>'Удалить' if can_destroy?
 
-    super_destroy_link = h.link_to 'УД!', 
-      h.url_for( :subdomain => 'admin', :only_path=> false, 
+    super_destroy_link = h.link_to 'УД!',
+      h.url_for( :subdomain => 'admin', :only_path=> false,
                 :controller => 'admin/admin_comments', :action => :destroy, :id => comment.id ),
       :title => 'Удалить окончательно',
       :class => 'comment-remove-link twipsy',
       :method => :delete,
       :confirm => 'Удалить окончательно, а вместе с ним и всю ветку ?' if h.can? :manage, :all
 
-    edit_link = h.link_to("ред.", '#', 
+    edit_link = h.link_to("ред.", '#',
                           :class => 'comment-edit-link',
                           :rel => :twipsy,
                           :title => "Редактировать, времени осталось #{time_to_edit} сек." ) if can_edit?
@@ -163,7 +163,7 @@ class Alice::CommentDecorator < Alice::BaseDecorator
                           toggle_comment_url,
                           :method => :put,
                           :class => 'comment-toggle-link twipsy',
-                          :remote => true, 
+                          :remote => true,
                           :title => is_hidden? ? 'Раскрыть' : 'Скрыть') if can_hide?
 
     h.content_tag :span, :class=>'alice-comment-actions' do
