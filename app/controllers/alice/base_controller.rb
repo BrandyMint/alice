@@ -73,7 +73,6 @@ module Alice
     end
 
     def create_comment attrs
-      attrs['content'] = 'пустой комментарий' if attrs['content'].blank?
       parent_comments.create attrs
     end
 
