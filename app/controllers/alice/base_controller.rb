@@ -6,9 +6,12 @@ module Alice
     def create
       # authorize_user!
       # TODO authorize! :create, ::Comment
-
+      
       data = get_data :author=>current_user, :author_ip=>request.remote_ip
-
+      
+      if data[:content].blank?
+        return render :text => "Комментарий не должен быть пустым", :status => '406'
+      end
       comment = create_comment data
 
       if request.xhr?

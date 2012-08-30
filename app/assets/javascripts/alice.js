@@ -9,13 +9,8 @@ $(function() {
       .live('ajax:success', function(evt, data, status, xhr){
               t = $(this);
               commentable = t.data('commentable');
-
-              t[0].reset();
-              t.find('textarea').removeAttr('disabled');
-
               b = t.find('button'); // input[type=submit]
-              b.removeAttr('disabled');
-              b.text(b.data('hidden-text') || 'комментировать');
+              remove_disabled(t);
 
               var tp = t.parent();
               if (tp.hasClass('alice-reply_form-container')) {
@@ -25,6 +20,7 @@ $(function() {
               }
 
               b = $("#alice-replies_of-"+commentable);
+
               if (t.data('new-reply-placement')=='prepend') {
                 b.prepend(data);
               } else {
@@ -33,6 +29,16 @@ $(function() {
 
               counter = $('#alice-comments-counter');
               counter.html((parseInt(counter.text())+1).toString());
+            })
+      .live('ajax:error', function(data, xhr, status){
+             if (xhr.responseText!=''){
+               alert(xhr.responseText);
+             }else{
+               alert("Что-то пошло не так");
+             }
+             if(xhr.status==406){
+                remove_disabled($(this));           
+              }
             })
       .live('ajax:beforeSend', function(evt, data, status, xhr){
               t = $(this);
@@ -55,6 +61,13 @@ $(function() {
               }
               return false;
         });
+
+      function remove_disabled(form){
+        form[0].reset();
+        form.find('textarea').removeAttr('disabled');
+        form.find('button').removeAttr('disabled');
+        form.find('button').text(b.data('hidden-text') || 'комментировать');
+      };  
 
     $('li.alice-comment a.comment-edit-link').live('click', function(event){
       var commentContainer = $(this).parent().parent().parent().parent();
