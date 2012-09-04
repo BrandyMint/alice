@@ -3,6 +3,7 @@
 module Alice
 end
 
+require 'rails/all'
 require 'alice/action_view_extension'
 ActionView::Base.send :include, Alice::ActionViewExtension
 
