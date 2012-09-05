@@ -3,8 +3,8 @@ source "http://rubygems.org"
 # Example:
 #   gem "activesupport", ">= 2.3.5"
 
-gem 'draper', "~> 0.12.3"
-gem 'rails', '>= 3.1.3'
+gem 'draper'
+gem 'rails'
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
