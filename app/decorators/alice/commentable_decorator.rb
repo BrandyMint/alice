@@ -18,7 +18,7 @@ class Alice::CommentableDecorator < Alice::BaseDecorator
   end
 
   def subject
-    to_model.respond_to?(:resubject) ? to_model.resubject : "Re: #{to_model}"
+    model.respond_to?(:resubject) ? model.resubject : "Re: #{model}"
   end
 
   def ident
@@ -38,14 +38,14 @@ class Alice::CommentableDecorator < Alice::BaseDecorator
   end
 
   def show_replies(level = 0)
-    return '' unless to_model
+    return '' unless model
     h.content_tag :div, :id=>'comments' do
       show_header + show_new_above + super(level) + show_new_below
     end
   end
 
   def comments_title
-    "Комментарии (<span id='alice-comments-counter'>#{to_model.total_comments_count}</span>)"
+    "Комментарии (<span id='alice-comments-counter'>#{model.total_comments_count}</span>)"
   end
 
 end

@@ -61,23 +61,23 @@ class Alice::BaseDecorator < ApplicationDecorator
 
   def created_at
     if options[:email]
-      I18n.l to_model.created_at, :format => :human
+      I18n.l model.created_at, :format => :human
     else
-      to_model.created_at.to_s :comment
+      model.created_at.to_s :comment
     end
   end
 
   def author size = true
     size = :medium if size == true
-    if to_model.respond_to?(:company) and to_model.company
+    if model.respond_to?(:company) and model.company
       if size
-        h.show_avatar(to_model.author, :size=>size, :class=>'element-user-avatar') +
+        h.show_avatar(model.author, :size=>size, :class=>'element-user-avatar') +
           "&nbsp;Официальный комментарий #{h.show_company(company)}".html_safe
       else
         "Официальный комментарий #{h.show_company(company)}".html_safe
       end
-    elsif to_model.author
-      h.show_user to_model.author, :size=>size
+    elsif model.author
+      h.show_user model.author, :size=>size
     else
       h.show_anonym (author_name || 'Аноним'), :size=>size, :email => author_email
     end
@@ -96,7 +96,7 @@ class Alice::BaseDecorator < ApplicationDecorator
   end
 
   def show_below_details
-    return '' unless to_model.active?
+    return '' unless model.active?
     h.content_tag :div, :class=>'alice-comment-below' do
       reply_link
       # .alice-comment-reply
@@ -155,7 +155,7 @@ class Alice::BaseDecorator < ApplicationDecorator
 
   def answers_link
     # TODO show_ansers_link_if_nont
-    return '' unless to_model.total_comments_count>0 and not show_replies?
+    return '' unless model.total_comments_count>0 and not show_replies?
     h.link_to "#{answers_title} (#{total_comments_count})",
       comments_url,
         :class=>'alice-answers-link'
@@ -195,7 +195,7 @@ class Alice::BaseDecorator < ApplicationDecorator
   end
 
   def ident
-    "#{to_model.class.to_s.underscore}_#{to_model.id}"
+    "#{model.class.to_s.underscore}_#{model.id}"
   end
 
   def replies_id
@@ -235,29 +235,29 @@ class Alice::BaseDecorator < ApplicationDecorator
 
   def form_object
     if helpers.request.subdomain == 'moderator'
-      ['moderator', to_model, build_comment]
+      ['moderator', model, build_comment]
     else
-      [to_model, build_comment]
+      [model, build_comment]
     end
   end
 
   def scope
-    to_model.comments.order self.order
+    model.comments.order self.order
   end
 
   def build_comment
-    to_model.comments.build
+    model.comments.build
   end
 
   def rating
-    h.render_cell :voting, :show, to_model
+    h.render_cell :voting, :show, model
   end
 
 
   # Можно ли оставлять официальные комментарии
   #
   def use_official?
-    to_model.is_a?(Question) and current_user and current_user.official_companies.present?
+    model.is_a?(Question) and current_user and current_user.official_companies.present?
   end
 
   # Опции для селекта выбора компаний

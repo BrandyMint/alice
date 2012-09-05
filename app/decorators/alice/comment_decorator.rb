@@ -11,14 +11,14 @@ class Alice::CommentDecorator < Alice::BaseDecorator
   end
 
   def default_commentable_decorator
-    commentable_decorator_class.new to_model.commentable, inherit_options
+    commentable_decorator_class.new model.commentable, inherit_options
   end
 
   def default_resource_decorator
     if comment.commentable == comment.resource
       commentable_decorator
     else
-      resource_decorator_class.new to_model.resource, inherit_options
+      resource_decorator_class.new model.resource, inherit_options
     end
   end
 
@@ -31,7 +31,7 @@ class Alice::CommentDecorator < Alice::BaseDecorator
   end
 
   def is_answer?
-    to_model.commentable==to_model.resource and to_model.commentable.is_a?(Question)
+    model.commentable==model.resource and model.commentable.is_a?(Question)
   end
 
   def is_official?
@@ -87,7 +87,7 @@ class Alice::CommentDecorator < Alice::BaseDecorator
 
   def can_edit?
     return nil unless show_forms?
-    active? and current_user and current_user == to_model.author and time_to_edit>10
+    active? and current_user and current_user == model.author and time_to_edit>10
   end
 
   def can_hide?
@@ -97,7 +97,7 @@ class Alice::CommentDecorator < Alice::BaseDecorator
 
   # Применяется в контроллере
   def can_update?
-    h.can?(:hide, comment) or current_user == to_model.author# and time_to_edit>10
+    h.can?(:hide, comment) or current_user == model.author# and time_to_edit>10
   end
 
   def mass_assignment_role
