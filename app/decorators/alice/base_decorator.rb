@@ -166,7 +166,7 @@ class Alice::BaseDecorator < ApplicationDecorator
   end
 
   def show_real_form
-    h.render 'comments/form', decorator: self, current_user: current_user
+    h.render 'comments/form', decorator: self
   end
 
   def show_form css_class
