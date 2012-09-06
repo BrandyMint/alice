@@ -32,7 +32,7 @@ module Alice
       comment.update_attributes data, :as => cd.mass_assignment_role if cd.can_update?
 
       if request.xhr?
-        render :inline => cd.comment_body
+        render :json => { :html => cd.comment_body.html_safe }
       else
         redirect_to polymorphic_path(comment.resource, :anchor=>"comment_#{comment.id}")
       end
@@ -49,7 +49,7 @@ module Alice
       cd.remove if cd.can_destroy?
 
       if request.xhr?
-        render :inline => cd.comment_body
+        render :json => { :html => cd.comment_body.html_safe }
       else
         redirect_to :back #polymorphic_path(r, :anchor=>c.is_a?(Comment) ? "comment_#{c.id}" : "comments")
       end
@@ -60,7 +60,7 @@ module Alice
     def response_after_create_as_xhr comment
       if comment.persisted?
         @decorator = commentable_decorator parent #Alice::CommentableDecorator.new parent
-        render :inline => @decorator.comment_decorated(comment).show_comment
+        render :json => { :html => @decorator.comment_decorated(comment).show_comment.html_safe }
       else
         raise 'not implemented'
       end
