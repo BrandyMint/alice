@@ -135,7 +135,8 @@ class Alice::BaseDecorator < ApplicationDecorator
 
   def replies(level = 0)
     result = ''
-    scope.each do |comment|
+    scoped = level==0 ? scope_official : scope
+    scoped.each do |comment|
       result << comment_decorated(comment).show_comment(level)
     end
     result.html_safe
@@ -245,6 +246,10 @@ class Alice::BaseDecorator < ApplicationDecorator
     model.comments.order self.order
   end
 
+  def scope_official
+    to_model.comments.order(:company_id).order self.order
+  end
+
   def build_comment
     model.comments.build
   end
@@ -257,7 +262,7 @@ class Alice::BaseDecorator < ApplicationDecorator
   # Можно ли оставлять официальные комментарии
   #
   def use_official?
-    model.is_a?(Question) and current_user and current_user.official_companies.present?
+    [Question,Post,Comment].include?(model.class.base_class) and current_user and current_user.official_companies.present?
   end
 
   # Опции для селекта выбора компаний
