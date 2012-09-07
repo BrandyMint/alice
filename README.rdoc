@@ -1,5 +1,7 @@
 = alice
 
+{<img src="http://travis-ci.org/BrandyMint/alice.png" />}[http://travis-ci.org/BrandyMint/alice] 
+
 ```
 > rails g model Comment commentable_id:integer commentable_type:string text:text author_id:integer resource_id:integer resource_type:string comments_count:integer all_comments_count:integer
 ```
