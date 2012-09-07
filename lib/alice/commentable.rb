@@ -28,12 +28,20 @@ module Alice::Commentable
       self.decrement_commentable if self.respond_to? :decrement_commentable
     end
 
+    def commentable_resource?
+      !(self.attributes.has_key?(:resource_type) && self.attributes.has_key?(:commentable_type))
+    end
+
     def destroy_comments
-      self.comments.each do |c|
-        if self.commentable==self.resource
-          c.destroy
-        else
-          c.reparent self.commentable
+      if commentable_resource?
+        self.total_comments.map &:destroy
+      else
+        self.comments.each do |c|
+          if self.commentable == self.resource
+            c.destroy
+          else
+            c.reparent self.commentable
+          end
         end
       end
     end
