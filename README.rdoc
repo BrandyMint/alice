@@ -19,6 +19,12 @@ end
 
 Description goes here.
 
+== Demo
+
+https://github.com/BrandyMint/alice-demo
+
+http://alice.brandymint.ru/
+
 == TODO
 
 * Возможно применить https://github.com/voxdolo/decent_exposure
