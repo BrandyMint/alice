@@ -19,12 +19,12 @@ module Alice::Commentable
 
   module InstanceMethods
     def increment_total_counter
-      self.class.increment_counter(:total_comments_count, self.commentable_id)
+      self.class.increment_counter(:total_comments_count, self.id)
       self.increment_commentable if self.respond_to? :increment_commentable
     end
 
     def decrement_total_counter
-      self.class.decrement_counter(:total_comments_count, self.commentable_id)
+      self.class.decrement_counter(:total_comments_count, self.id)
       self.decrement_commentable if self.respond_to? :decrement_commentable
     end
 

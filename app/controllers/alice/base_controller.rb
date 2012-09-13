@@ -42,6 +42,8 @@ module Alice
       comment = comment_class.find(params[:id])
       #c = comment.commentable
       #r = comment.resource
+      # не работает уменьшение счетчика в after_destroy - добавил сюда
+      comment.commentable.decrement_total_counter
 
       decorator = commentable_decorator comment.commentable # Alice::CommentableDecorator.new comment.commentable
       cd = decorator.comment_decorated(comment)
