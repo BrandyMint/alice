@@ -5,6 +5,13 @@ source "http://rubygems.org"
 
 gem 'draper'
 gem 'rails'
+gem 'sqlite3'
+gem 'database_cleaner'
+
+group :test do
+#  gem "rspec-rails", "~> 2.4"
+  gem "capybara"
+end
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
