@@ -6,4 +6,6 @@ source "http://rubygems.org"
 gem 'draper'
 gem 'rails'
 gem 'sqlite3'
+gem 'haml'
+gem 'alice', :path => '../..'
 
