@@ -1,0 +1,237 @@
+// Сюда импортируются все необходимые стили
+// потому что этот файл может быть запрошен отдельно из битрикса
+
+@import compass/typography/links
+@import bootstrap/mixins
+@import base/colors
+@import base/fonts
+
+$link-color: red
+$comment-pad: 37px
+$subcomment-pad: $comment-pad
+
+// new - новый комментарий к ресурсу
+// reply - ответный комментарий
+
+
+@mixin offical-font
+  .alice-reply-form-block
+    margin-left: 0
+  a.alice-comment-reply_link
+    margin-left: 0
+  .alice-comment-content
+    color: black
+    font-size: 120%
+    line-height: 125%
+    margin: 0.7em 0 0.5em 0
+
+
+// Заголовок создания нового комментария
+h3.alice-new-header
+  margin-top: 15px
+
+form.alice-form
+  textarea
+    width: 100%
+
+  &.alice-form-edit
+
+  // Стиль для всех форм
+  // Форма ответа на коммент
+  &.alice-reply_form
+    input
+      width: 170px
+
+  // Стиль к которму привязан ajax для добавление
+  // комментария в ленту
+  &.alice-new_form
+
+.alice-comment-details
+  .element-details
+    float: left
+    vertical-align: -5px // Иначе текст не центрирован
+    img.element-user-avatar.avatar-medium
+      margin-left: 0px
+      margin-top: -2px
+
+.alice-form-container
+.alice-reply_form-container
+  display: none
+
+
+#comments
+  margin-top: 20px
+  margin-bottom: 20px
+
+  span.element-user-name, span.element-unregistered-user-name
+    margin-left: 0px
+
+
+a.comment-toggle-link, a.comment-show-link, a.comment-edit-link, a.comment-remove-link
+  border-bottom: 1px dashed #0D62A8
+  text-decoration: none
+  margin-right: 5px
+
+a.comment-toggle-link:hover, a.comment-show-link:hover, a.comment-edit-link:hover
+  color: grey
+  border-color: grey
+
+
+div.alice-comment-hidden
+  margin: 0.7em 0 0.7em $subcomment-pad
+
+div.alice-comment-hidden, .alice-comment-removed
+  +font-1
+  color: #ccc
+  font-style: italic
+
+// Блок с кнопкой
+.alice-new-actions
+  margin-top: 5px
+
+// Кнопка отправки сообщения
+button.alice-new-send
+
+
+// Ссылка на комментарии объекта комментирования
+a.alice-link-to-comments
+  font-size: 81%
+  +link-colors(#ccc)
+
+
+ul.alice-replies
+  margin-left: 0
+
+.alice-level-1, .alice-level-2, .alice-level-3, .alice-level-4, .alice-level-5
+  margin-left: $comment-pad !important
+
+ul.alice-comments
+  margin: 0
+  padding: 0
+
+.alice-comment-timelink
+  //float: right
+  line-height: 24px
+  margin-right: 5px
+  +unstyled-link
+  //border-bottom: 1px dashed #999
+  &:hover
+    +unstyled-link
+    color: black
+    border-bottom-color: black
+
+h3.alice-header
+  font-size: 24px
+  line-height: 36px
+  // font-family: Helvetica, Arial, serif
+  // font-size: 16px
+  // font-weight: bold
+  // color: black
+  // padding-bottom: 0.7em
+  // margin-bottom: 0.5em
+  // border-bottom: 1px dotted #ccc
+
+  #alice-comments-counter
+
+li.alice-comment
+  margin-left: 0px
+  margin-top: 15px
+  list-style-type: none
+
+  .alice-comment-body
+
+  .alice-comment-comments-count
+    +font-1
+    color: #999
+  .alice-question-details
+    .alice-question-details2
+      float: right
+      color: #666
+      margin-bottom: 7px
+
+  .alice-comment-details
+    clear: both
+    margin: 0
+    padding: 0
+    height: 24px
+    line-height: 24px
+    vertical-align: middle
+    +font-2
+    color: #666
+    background-color: $color-comment-title-bg
+    .alice-comment-rating
+      float: right
+    .alice-comment-actions
+      margin-left: 5px
+  .alice-comment-content
+    color: black
+    +font-2
+    margin: 0.7em 0 0 $subcomment-pad
+
+
+  &.offical-comment
+    $color-offical-comment: #ffe
+    $color-offical-comment-header: #eec
+    > .alice-comment-div
+      +offical-font
+      background-color: $color-offical-comment
+      border: 1px solid $color-offical-comment-header
+      .alice-comment-body
+        padding: 5px 10px
+      .alice-comment-details
+        background-color: $color-offical-comment-header
+
+  &.question-comment
+    // background-color: $color-comment-title-bg
+    margin-bottom: 20px
+    padding-bottom: 10px
+    padding-top: 0px
+    // border-bottom: 1px #999 dotted
+
+    > .alice-comment-div
+      +offical-font
+
+a.alice-answers-link
+  float: right
+
+// Псевдо-ссылка 'ответить', открывает форму с ответом
+a.alice-comment-reply_link
+  // +font-2
+  // text-decoration: none
+  // border-bottom: 1px dashed $color-link
+  // color: $color-link
+  margin-left: $subcomment-pad
+  line-height: 24px
+
+  &.offical-comment
+    $color-offical-comment: #ffe
+    $color-offical-comment-header: #eec
+    background-color: $color-offical-comment
+    border: 1px solid $color-offical-comment-header
+    .alice-comment-details
+      background-color: $color-offical-comment-header
+
+// Псевдо-ссылка 'ответить', открывает форму с ответом
+.alice-comment-reply
+  margin-top: 5px
+  margin-left: $subcomment-pad
+
+.alice-reply-form-block
+  margin-left: $subcomment-pad
+
+
+div.alice-comment-edit
+  margin-left: $subcomment-pad
+  display: none
+
+h3.emitent_questions_header
+  color: #aaa
+
+ul.emitent_questions#comments
+  list-style: none
+  padding-left: 0
+  margin-top: 0
+  margin-left: 0
+  padding-bottom: 0px
+  padding-top: 0px
+  border-bottom: 1px dotted #999

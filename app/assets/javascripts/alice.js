@@ -110,4 +110,17 @@ $(function() {
       return false;
     });
 
+    $("a.comment-show-link").live("click", function() {
+      $(this).hide();
+      $(this).tooltip('hide'); // TODO Проверять на наличие tooltip
+      $(this).parents("li.alice-comment:first").find("div.alice-comment-content:first").removeClass("hidden");
+    });
+
+    $('a.comment-toggle-link').live('ajax:success', function(evt, data, status, xhr){
+      $this = $(this);
+      $this.tooltip('hide'); // TODO Проверять на наличие tooltip
+      var commentContainer = $($this.parents(".alice-comment-div")[0]);
+      commentContainer.html(data['html']);
+    });
+
 });

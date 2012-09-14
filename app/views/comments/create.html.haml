@@ -1,0 +1,6 @@
+.page-header
+  %h1 Спасибо за комментарий!
+
+= render 'form'
+
+= error_messages_for @comment, :class=>'alert-message', :object_name=>'Комментарий'

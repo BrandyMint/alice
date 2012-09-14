@@ -1,0 +1,8 @@
+%div{:class => decorator.form_container_class, :id => decorator.form_container_id }
+  = form_for decorator.form_object, :url => decorator.form_url, :html => decorator.form_html, :remote => decorator.form_remote do |f|
+    - unless current_user
+      = render 'anonymous', :f=>f, :type=>:comment
+      .ashf= text_area_tag :text, '', :size=>'24x6'
+    = f.text_area :content, :rows => 5, :cols=> 80, :class=>:xxlarge, :required => true
+    .alice-new-actions
+      %button.btn.btn-primary.btn-small.alice-send-button Отправить

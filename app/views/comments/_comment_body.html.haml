@@ -1,0 +1,8 @@
+= decorator.show_comment_details
+= decorator.unhide_link
+.alice-comment-body
+  .alice-comment-content{class: ('hidden' if decorator.is_hidden)}= decorator.comment_content
+  = decorator.show_hidden_edit_form
+  = decorator.show_below_details
+  = decorator.show_reply
+

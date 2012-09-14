@@ -12,12 +12,12 @@ module Alice
       if data[:content].blank?
         return render :text => "Комментарий не должен быть пустым", :status => '406'
       end
-      comment = create_comment data
+      @comment = create_comment data
 
       if request.xhr?
-        response_after_create_as_xhr comment
+        response_after_create_as_xhr @comment
       else
-        response_after_create comment
+        response_after_create @comment
       end
     end
 

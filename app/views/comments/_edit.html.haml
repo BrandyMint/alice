@@ -1,0 +1,12 @@
+.alice-comment-edit
+  = form_for comment,
+    :remote => true,
+    :html => { :'data-type' => 'html',
+      :class => "alice-form alice-edit-form",
+      :id => "alice-form-#{decorator.ident}",
+      'data-commentable' => decorator.ident } do |f|
+    = f.text_area :content, :rows => 3, :cols => 80, :required => true
+
+    .alice-edit-actions
+      %button.btn.btn-small.btn-primary.alice-send-button Сохранить
+      %button.btn.btn-small.alice-cancel-button Отмена
