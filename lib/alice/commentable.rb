@@ -18,6 +18,11 @@ module Alice::Commentable
   end
 
   module InstanceMethods
+
+    def active_comments_count
+       total_comments.active.count
+    end
+
     def increment_total_counter
       self.class.increment_counter(:total_comments_count, self.id)
       self.increment_commentable if self.respond_to? :increment_commentable
