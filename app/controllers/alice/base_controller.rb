@@ -40,9 +40,7 @@ module Alice
 
     def destroy
       comment = comment_class.find(params[:id])
-      #c = comment.commentable
-      #r = comment.resource
-
+      
       decorator = commentable_decorator comment.commentable # Alice::CommentableDecorator.new comment.commentable
       cd = decorator.comment_decorated(comment)
 

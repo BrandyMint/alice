@@ -45,7 +45,7 @@ class Alice::CommentableDecorator < Alice::BaseDecorator
   end
 
   def comments_title
-    "Комментарии (<span id='alice-comments-counter'>#{model.total_comments_count}</span>)"
+   "Комментарии (<span id='alice-comments-counter'>#{model.active_comments_count}</span>)"
   end
 
 end
