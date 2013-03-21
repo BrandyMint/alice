@@ -29,7 +29,7 @@ module Alice
 
       cd = decorate_comment comment
 
-      comment.update_attributes data, :as => cd.mass_assignment_role if cd.can_update?
+      comment.update_attributes!(data, as: cd.mass_assignment_role) if cd.can_update?
 
       if request.xhr?
         render :json => { :html => cd.comment_body.html_safe }
