@@ -67,7 +67,10 @@ $(function() {
         form.find('textarea').removeAttr('disabled');
         form.find('button').removeAttr('disabled');
         form.find('button').text(b.data('hidden-text') || 'комментировать');
-      };  
+        if (form.find('button').text() == 'Отправляем...') {
+          form.find('button').text('Отправить');
+        }
+      }
 
     $('li.alice-comment a.comment-edit-link').live('click', function(event){
       var commentContainer = $(this).parent().parent().parent().parent();
