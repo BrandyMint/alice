@@ -22,9 +22,9 @@ $(function() {
               b = $("#alice-replies_of-"+commentable);
 
               if (t.data('new-reply-placement')=='prepend') {
-                b.prepend(data['html']);
+                b.prepend(JSON.parse(data)['html']);
               } else {
-                b.append(data['html']);
+                b.append(JSON.parse(data)['html']);
               }
 
               counter = $('#alice-comments-counter');
@@ -96,7 +96,7 @@ $(function() {
       //$this.twipsy('hide'); // TODO Проверять на наличие twipsy
 
       var commentContainer = $($this.parents(".alice-comment-div")[0]);
-      commentContainer.html(data['html']);
+      commentContainer.html(JSON.parse(data)['html']);
     });
 
     $('a.comment-remove-link').live('ajax:success', function(evt, data, status, xhr){
@@ -105,7 +105,7 @@ $(function() {
       // $this.twipsy('hide'); // TODO Проверять на наличие twipsy
 
       var commentContainer = $($this.parents(".alice-comment-div")[0]);
-      commentContainer.html(data['html']);
+      commentContainer.html(JSON.parse(data['html']));
 
       return false;
     });
