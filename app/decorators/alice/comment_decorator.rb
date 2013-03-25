@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class Alice::CommentDecorator < Alice::BaseDecorator
   decorates :comment
+  alias_method :comment, :source
 
   def default_level
     self.commentable_decorator.level + 1
