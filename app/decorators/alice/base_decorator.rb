@@ -110,7 +110,7 @@ class Alice::BaseDecorator < ApplicationDecorator
   end
 
   def comment_decorated comment, o={}
-    comment_decorator_class.new comment, inherit_options(o).merge( :comentable_decorator=>self )
+    comment_decorator_class.new comment, inherit_options(o)
   end
 
   def replies_class
