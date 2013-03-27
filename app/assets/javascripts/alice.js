@@ -46,8 +46,6 @@ $(function() {
               b = t.find('button'); // input[type=submit]
               b.attr('disabled', 'disabled');
               b.data('hidden-text', b.text());
-              // b = t.find('button.alice-send-button');
-              b.text('Отправляю..');
             });
     $('.alice-comment-reply_link').live('click', function(event){
               t = $(this);
