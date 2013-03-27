@@ -12,14 +12,14 @@ class Alice::CommentDecorator < Alice::BaseDecorator
   end
 
   def default_commentable_decorator
-    commentable_decorator_class.new model.commentable, inherit_options
+    commentable_decorator_class.new model.commentable, context: inherit_options
   end
 
   def default_resource_decorator
     if comment.commentable == comment.resource
       commentable_decorator
     else
-      resource_decorator_class.new model.resource, inherit_options
+      resource_decorator_class.new model.resource, context: inherit_options
     end
   end
 
