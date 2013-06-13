@@ -175,7 +175,7 @@ class Alice::BaseDecorator < ApplicationDecorator
       if h.can? :create, :comments
         show_real_form
       else
-        'Вам запрещено оставлять комментарии'
+        "Вы не можете оставить комментарий. Пожалуйста, #{link_to 'зарегистрируйтесь', login_url} или #{link_to 'авторизируйтесь', signup_url} на сайте.".html_safe
       end
     end
   end
