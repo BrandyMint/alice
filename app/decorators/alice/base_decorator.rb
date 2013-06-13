@@ -96,7 +96,7 @@ class Alice::BaseDecorator < ApplicationDecorator
   end
 
   def show_below_details
-    return '' unless model.active?
+    return '' unless model.active? && can?(:create, :comments)
     h.content_tag :div, :class=>'alice-comment-below' do
       reply_link
       # .alice-comment-reply
@@ -181,7 +181,7 @@ class Alice::BaseDecorator < ApplicationDecorator
   end
 
   def show_reply
-    return unless show_forms?
+    return unless show_forms? && can?(:create, :comments)
     show_form 'alice-reply-form-block'
   end
 
